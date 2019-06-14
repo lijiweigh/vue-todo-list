@@ -2,16 +2,21 @@
     <div class="list">
         <item @open="open" @toggle="toggle" v-for="(item, index) in list" :key="index" :someitem="item" v-show="list.length"></item>
         <div class="no"  v-show="!list.length">no</div>
-        <transition name="popup">
+        <!-- <transition name="popup">
             <popup v-show="showPopup" :isEdit="true" :someitem="someitem" @cancel="showPopup = false"></popup>
-        </transition>
+        </transition> -->
     </div>
 </template>
 
 <script>
 import item from "./item"
-import popup from "./popup"
+// import popup from "./popup"
 import { mapState } from "vuex"
+
+import Vue from "vue"
+import popup_plugin from "../plugins/popup"
+Vue.use(popup_plugin)
+
 export default {
     name: "list",
     data (){
@@ -25,12 +30,18 @@ export default {
     },
     components: {
         item,
-        popup
+        // popup
     },
     methods: {
         open (someitem) {
-            this.showPopup = true
+            // this.showPopup = true
             this.someitem = someitem
+            this.$popup ({
+                show: true,
+                isEdit: true,
+                someitem,
+                ...someitem
+            })
         },
         toggle () {
 

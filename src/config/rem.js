@@ -1,11 +1,12 @@
 (function rem () {
-    let width = document.documentElement.clientWidth
-    let ev = window.onorientationchange ? "orientationchange" : "resize"
+    
+    let ev = "orientationchange" in window ? "orientationchange" : "resize"
 
     function setRem () {
+        let width = document.documentElement.clientWidth
         document.documentElement.style.fontSize = width / 375 * 20 + "px"
     }
 
-    addEventListener(ev, setRem)
-    addEventListener("DOMContentLoaded", setRem)
+    window.addEventListener(ev, setRem)
+    window.addEventListener("DOMContentLoaded", setRem)
 })()

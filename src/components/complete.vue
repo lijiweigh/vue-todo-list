@@ -2,16 +2,19 @@
     <div class="complete">
         <item @open="open" @toggle="toggle" v-for="(item, index) in complete" :key="index" :someitem="item"  v-show="complete.length"></item>
         <div class="no"  v-show="!complete.length">no</div>
-        <transition name="popup">
+        <!-- <transition name="popup">
             <popup v-show="showPopup" :justSee="true" :someitem="someitem" @cancel="showPopup = false"></popup>
-        </transition>
+        </transition> -->
     </div>
 </template>
 
 <script>
 import item from "./item"
-import popup from "./popup"
+// import popup from "./popup"
 import { mapState } from "vuex"
+import Vue from "vue"
+import popup_plugin from "../plugins/popup"
+Vue.use(popup_plugin)
 
 export default {
     name: "complete",
@@ -23,12 +26,16 @@ export default {
     },
     components: {
         item,
-        popup
+        // popup
     },
     methods: {
         open (someitem) {
-            this.showPopup = true
-            this.someitem = someitem
+            this.$popup ({
+                show: true,
+                justSee: true,
+                someitem,
+                ...someitem
+            })
         },
         toggle () {
             

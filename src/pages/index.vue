@@ -16,9 +16,9 @@
 
         <foot-bot></foot-bot>
 
-        <transition name="popup">
+        <!-- <transition name="popup">
             <popup v-show="showPopup" @cancel="showPopup = false"></popup>
-        </transition>
+        </transition> -->
     </div>
 </template>
 
@@ -28,6 +28,11 @@ import footBot from "../components/footer"
 import item from "../components/item"
 import popup from "../components/popup"
 import { mapMutations } from "vuex"
+
+import Vue from "vue"
+import popup_plugin from "../plugins/popup"
+Vue.use(popup_plugin)
+
 export default {
     name: "index",
     data () {
@@ -38,7 +43,10 @@ export default {
     },
     methods: {
         add () {
-            this.showPopup = true
+            // this.showPopup = true
+            this.$popup ({
+                show: true
+            })
         },
         // ...mapMutations(["save_to_storage"])
     },
@@ -58,7 +66,7 @@ export default {
         headTop,
         footBot,
         item,
-        popup
+        // popup
     },
     mounted() {
         console.log(this.$route.name)
