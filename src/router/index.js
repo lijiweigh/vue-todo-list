@@ -7,7 +7,7 @@ import list from "../components/list.vue"
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+let router = new VueRouter({
     routes: [
         {
             path: "/index",
@@ -37,3 +37,10 @@ export default new VueRouter({
         }
     ]
 })
+
+router.beforeEach(function(to, from, next) {
+    console.log("go router")
+    next()
+})
+
+export default router

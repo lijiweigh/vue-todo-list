@@ -48,7 +48,8 @@ export default {
         }
     },
     mounted() {
-
+        console.log("list mounted")
+        this.$forceUpdate()
     }
 }
 </script>

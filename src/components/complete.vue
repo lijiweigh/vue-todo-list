@@ -43,6 +43,10 @@ export default {
     },
     computed: {
         ...mapState(["complete"])
+    },
+    mounted () {
+        console.log("complete mounted")
+        this.$forceUpdate()
     }
 }
 </script>

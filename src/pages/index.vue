@@ -12,7 +12,9 @@
             </template>
         </head-top>
 
-        <router-view></router-view>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
 
         <foot-bot></foot-bot>
 
